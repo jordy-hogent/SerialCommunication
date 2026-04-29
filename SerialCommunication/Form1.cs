@@ -126,7 +126,7 @@ namespace SerialCommunication
             
         }
 
-        private void checkBoxDigital2_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxDigital2_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
