@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -54,7 +56,98 @@ namespace SerialCommunication
 
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            // abc def ghi jkl
+            try 
+            { 
+                if (serialPortArduino.IsOpen)// abc def ghi jkl
+                {
+                //ik heb een verbinding
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                    buttonConnect.Text = "connect";
+                    labelStatus.Text = "status: disconnect";
+
+
+                }
+                else
+                {
+                    //ik heb geen verbinding
+                    serialPortArduino.PortName = (string) comboBoxPoort.SelectedItem;
+                    serialPortArduino.BaudRate = Int32.Parse((string) comboBoxPoort.SelectedItem);
+                    serialPortArduino.DataBits = (int) numericUpDownDatabits.Value;
+
+                    if (radioButtonParityEven.Checked) serialPortArduino.Parity = Parity.Even;
+                    else if (radioButtonParityOdd.Checked) serialPortArduino.Parity = Parity.Odd;
+                    else if (radioButtonParityNone.Checked) serialPortArduino.Parity = Parity.None;
+                    else if (radioButtonParityMark.Checked) serialPortArduino.Parity = Parity.Mark;
+                    else if (radioButtonParitySpace.Checked) serialPortArduino.Parity= Parity.Space;
+
+                    if (radioButtonStopbitsNone.Checked) serialPortArduino.StopBits = StopBits.None;
+                    else if (radioButtonStopbitsOne.Checked) serialPortArduino.StopBits = StopBits.One;
+                    else if (radioButtonStopbitsOnePointFive.Checked) serialPortArduino.StopBits = StopBits.OnePointFive;
+                    else if (radioButtonStopbitsTwo.Checked) serialPortArduino.StopBits = StopBits.Two;
+
+                    if (radioButtonHandshakeNone.Checked) serialPortArduino.Handshake = Handshake.None;
+                    else if (radioButtonHandshakeRTS.Checked) serialPortArduino.Handshake = Handshake.RequestToSend;
+                    else if (radioButtonHandshakeRTSXonXoff.Checked) serialPortArduino.Handshake |= Handshake.RequestToSendXOnXOff;
+                    else if (radioButtonHandshakeXonXoff.Checked) serialPortArduino.Handshake= Handshake.XOnXOff;
+
+                    serialPortArduino.RtsEnable = checkBoxRtsEnable.Checked;
+                    serialPortArduino.DtrEnable = checkBoxDtrEnable.Checked;
+
+                    serialPortArduino.Open();
+                    string commando = "ping";
+                    serialPortArduino.WriteLine(commando);
+                    string antWoord = serialPortArduino.ReadLine();
+
+                    antWoord = antWoord.Trim();
+
+                    if (antWoord == "pong")
+                    {
+                        radioButtonVerbonden.Checked = true;
+                        buttonConnect.Text = "disconnect";
+                        labelStatus.Text = "Status : Connected";
+                    }
+                    else
+                    {
+                        serialPortArduino.Close();
+                        labelStatus.Text = "Error : verkeerd antWoord";
+                    }
+
+                }
+
+            }
+            catch(Exception exception)
+            { 
+            labelStatus.Text = "error: " + exception.Message;
+            serialPortArduino.Close ();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }  
+            
+        }
+
+        private void checkBoxDigital2_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando; //set d2 high/loW
+                    if (checkBoxDigital2.Checked) commando = "set d2 high";
+                    else commando = "set d2 loW";
+                    serialPortArduino.WriteLine(commando);
+
+                }
+            
+
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
         }
     }
 }

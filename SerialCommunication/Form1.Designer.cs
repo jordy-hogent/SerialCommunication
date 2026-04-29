@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.radioButtonVerbonden = new System.Windows.Forms.RadioButton();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.labelPoort = new System.Windows.Forms.Label();
@@ -88,6 +89,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.labelStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.serialPortArduino = new System.IO.Ports.SerialPort(this.components);
             this.tabControl.SuspendLayout();
             this.tabPageInstellingen.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -579,6 +581,7 @@
             this.checkBoxDigital2.TabIndex = 0;
             this.checkBoxDigital2.Text = "Digital 2";
             this.checkBoxDigital2.UseVisualStyleBackColor = true;
+            this.checkBoxDigital2.CheckedChanged += new System.EventHandler(this.checkBoxDigital2_CheckedChanged);
             // 
             // tabPageOefening2
             // 
@@ -971,6 +974,7 @@
         internal System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel labelStatus;
+        private System.IO.Ports.SerialPort serialPortArduino;
     }
 }
 
