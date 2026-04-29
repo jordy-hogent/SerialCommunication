@@ -58,7 +58,7 @@ namespace SerialCommunication
         {
             try 
             { 
-                if (serialPortArduino.IsOpen)// abc def ghi jkl
+                if (serialPortArduino.IsOpen)
                 {
                 //ik heb een verbinding
                 serialPortArduino.Close();
@@ -97,11 +97,11 @@ namespace SerialCommunication
                     serialPortArduino.Open();
                     string commando = "ping";
                     serialPortArduino.WriteLine(commando);
-                    string antWoord = serialPortArduino.ReadLine();
+                    string antwoord = serialPortArduino.ReadLine();
 
-                    antWoord = antWoord.Trim();
+                    antwoord = antwoord.Trim();
 
-                    if (antWoord == "pong")
+                    if (antwoord == "pong")
                     {
                         radioButtonVerbonden.Checked = true;
                         buttonConnect.Text = "disconnect";
@@ -110,7 +110,7 @@ namespace SerialCommunication
                     else
                     {
                         serialPortArduino.Close();
-                        labelStatus.Text = "Error : verkeerd antWoord";
+                        labelStatus.Text = "Error : verkeerd antwoord";
                     }
 
                 }
