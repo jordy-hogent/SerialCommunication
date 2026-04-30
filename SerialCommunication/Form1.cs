@@ -71,8 +71,8 @@ namespace SerialCommunication
                 else
                 {
                     //ik heb geen verbinding
-                    serialPortArduino.PortName = (string) comboBoxPoort.SelectedItem;
-                    serialPortArduino.BaudRate = Int32.Parse((string) comboBoxPoort.SelectedItem);
+                    serialPortArduino.PortName = (string)comboBoxPoort.SelectedItem;
+                    serialPortArduino.BaudRate = Int32.Parse((string)comboBoxBaudrate.SelectedItem);
                     serialPortArduino.DataBits = (int) numericUpDownDatabits.Value;
 
                     if (radioButtonParityEven.Checked) serialPortArduino.Parity = Parity.Even;
