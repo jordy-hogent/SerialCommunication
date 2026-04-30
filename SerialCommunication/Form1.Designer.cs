@@ -67,11 +67,11 @@
             this.checkBoxDigital2 = new System.Windows.Forms.CheckBox();
             this.tabPageOefening2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
-            this.trackBarPWM11 = new System.Windows.Forms.TrackBar();
+            this.TrackBarPWM11 = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
-            this.trackBarPWM10 = new System.Windows.Forms.TrackBar();
+            this.TrackBarPWM10 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
-            this.trackBarPWM9 = new System.Windows.Forms.TrackBar();
+            this.TrackBarPWM9 = new System.Windows.Forms.TrackBar();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPageOefening3 = new System.Windows.Forms.TabPage();
             this.radioButtonDigital7 = new System.Windows.Forms.RadioButton();
@@ -99,9 +99,9 @@
             this.tabPageOefening1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPageOefening2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPWM11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPWM10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPWM9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBarPWM11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBarPWM10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBarPWM9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPageOefening3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -559,6 +559,7 @@
             this.checkBoxDigital4.TabIndex = 2;
             this.checkBoxDigital4.Text = "Digital 4";
             this.checkBoxDigital4.UseVisualStyleBackColor = true;
+            this.checkBoxDigital4.CheckedChanged += new System.EventHandler(this.checkBoxDigital4_CheckedChanged);
             // 
             // checkBoxDigital3
             // 
@@ -570,6 +571,7 @@
             this.checkBoxDigital3.TabIndex = 1;
             this.checkBoxDigital3.Text = "Digital 3";
             this.checkBoxDigital3.UseVisualStyleBackColor = true;
+            this.checkBoxDigital3.CheckedChanged += new System.EventHandler(this.checkBoxDigital3_CheckedChanged);
             // 
             // checkBoxDigital2
             // 
@@ -586,11 +588,11 @@
             // tabPageOefening2
             // 
             this.tabPageOefening2.Controls.Add(this.label3);
-            this.tabPageOefening2.Controls.Add(this.trackBarPWM11);
+            this.tabPageOefening2.Controls.Add(this.TrackBarPWM11);
             this.tabPageOefening2.Controls.Add(this.label2);
-            this.tabPageOefening2.Controls.Add(this.trackBarPWM10);
+            this.tabPageOefening2.Controls.Add(this.TrackBarPWM10);
             this.tabPageOefening2.Controls.Add(this.label1);
-            this.tabPageOefening2.Controls.Add(this.trackBarPWM9);
+            this.tabPageOefening2.Controls.Add(this.TrackBarPWM9);
             this.tabPageOefening2.Controls.Add(this.pictureBox2);
             this.tabPageOefening2.Location = new System.Drawing.Point(4, 29);
             this.tabPageOefening2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -613,14 +615,15 @@
             // 
             // trackBarPWM11
             // 
-            this.trackBarPWM11.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.trackBarPWM11.Location = new System.Drawing.Point(720, 511);
-            this.trackBarPWM11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.trackBarPWM11.Maximum = 255;
-            this.trackBarPWM11.Name = "trackBarPWM11";
-            this.trackBarPWM11.Size = new System.Drawing.Size(370, 69);
-            this.trackBarPWM11.TabIndex = 4;
-            this.trackBarPWM11.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TrackBarPWM11.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TrackBarPWM11.Location = new System.Drawing.Point(720, 511);
+            this.TrackBarPWM11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TrackBarPWM11.Maximum = 255;
+            this.TrackBarPWM11.Name = "trackBarPWM11";
+            this.TrackBarPWM11.Size = new System.Drawing.Size(370, 69);
+            this.TrackBarPWM11.TabIndex = 4;
+            this.TrackBarPWM11.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TrackBarPWM11.Scroll += new System.EventHandler(this.TrackBarPWM11_Scroll);
             // 
             // label2
             // 
@@ -634,14 +637,15 @@
             // 
             // trackBarPWM10
             // 
-            this.trackBarPWM10.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.trackBarPWM10.Location = new System.Drawing.Point(720, 454);
-            this.trackBarPWM10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.trackBarPWM10.Maximum = 255;
-            this.trackBarPWM10.Name = "trackBarPWM10";
-            this.trackBarPWM10.Size = new System.Drawing.Size(370, 69);
-            this.trackBarPWM10.TabIndex = 2;
-            this.trackBarPWM10.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TrackBarPWM10.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TrackBarPWM10.Location = new System.Drawing.Point(720, 454);
+            this.TrackBarPWM10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TrackBarPWM10.Maximum = 255;
+            this.TrackBarPWM10.Name = "trackBarPWM10";
+            this.TrackBarPWM10.Size = new System.Drawing.Size(370, 69);
+            this.TrackBarPWM10.TabIndex = 2;
+            this.TrackBarPWM10.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TrackBarPWM10.Scroll += new System.EventHandler(this.TrackBarPWM10_Scroll);
             // 
             // label1
             // 
@@ -655,14 +659,15 @@
             // 
             // trackBarPWM9
             // 
-            this.trackBarPWM9.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.trackBarPWM9.Location = new System.Drawing.Point(720, 395);
-            this.trackBarPWM9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.trackBarPWM9.Maximum = 255;
-            this.trackBarPWM9.Name = "trackBarPWM9";
-            this.trackBarPWM9.Size = new System.Drawing.Size(370, 69);
-            this.trackBarPWM9.TabIndex = 0;
-            this.trackBarPWM9.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TrackBarPWM9.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TrackBarPWM9.Location = new System.Drawing.Point(720, 395);
+            this.TrackBarPWM9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TrackBarPWM9.Maximum = 255;
+            this.TrackBarPWM9.Name = "trackBarPWM9";
+            this.TrackBarPWM9.Size = new System.Drawing.Size(370, 69);
+            this.TrackBarPWM9.TabIndex = 0;
+            this.TrackBarPWM9.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TrackBarPWM9.Scroll += new System.EventHandler(this.TrackBarPWM9_Scroll);
             // 
             // pictureBox2
             // 
@@ -893,9 +898,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPageOefening2.ResumeLayout(false);
             this.tabPageOefening2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPWM11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPWM10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPWM9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBarPWM11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBarPWM10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrackBarPWM9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPageOefening3.ResumeLayout(false);
             this.tabPageOefening3.PerformLayout();
@@ -952,11 +957,11 @@
         internal System.Windows.Forms.CheckBox checkBoxDigital2;
         internal System.Windows.Forms.TabPage tabPageOefening2;
         internal System.Windows.Forms.Label label3;
-        internal System.Windows.Forms.TrackBar trackBarPWM11;
+        internal System.Windows.Forms.TrackBar TrackBarPWM11;
         internal System.Windows.Forms.Label label2;
-        internal System.Windows.Forms.TrackBar trackBarPWM10;
+        internal System.Windows.Forms.TrackBar TrackBarPWM10;
         internal System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.TrackBar trackBarPWM9;
+        internal System.Windows.Forms.TrackBar TrackBarPWM9;
         internal System.Windows.Forms.PictureBox pictureBox2;
         internal System.Windows.Forms.TabPage tabPageOefening3;
         internal System.Windows.Forms.RadioButton radioButtonDigital7;

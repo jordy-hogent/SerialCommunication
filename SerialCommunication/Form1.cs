@@ -134,11 +134,120 @@ namespace SerialCommunication
                 {
                     string commando; //set d2 high/loW
                     if (checkBoxDigital2.Checked) commando = "set d2 high";
-                    else commando = "set d2 loW";
+                    else commando = "set d2 low";
                     serialPortArduino.WriteLine(commando);
 
                 }
             
+
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }                                                                                                                                                                                                                                                       
+        }
+
+        private void checkBoxDigital3_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando; //set d3 high/loW
+                    if (checkBoxDigital3.Checked) commando = "set d3 high";
+                    else commando = "set d3 low";
+                    serialPortArduino.WriteLine(commando);
+
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+        }
+
+        private void checkBoxDigital4_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando; //set d4 high/loW
+                    if (checkBoxDigital4.Checked) commando = "set d4 high";
+                    else commando = "set d4 low";
+                    serialPortArduino.WriteLine(commando);
+
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+        }
+
+        private void TrackBarPWM9_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando = string.Format("set pwm9 {0}", TrackBarPWM9.Value); //set pwm9 0..225
+                    serialPortArduino.WriteLine(commando);
+                }
+
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+        }
+
+        private void TrackBarPWM10_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando = string.Format("set pwm10 {0}", TrackBarPWM10.Value); //set pwm10 0..225
+                    serialPortArduino.WriteLine(commando);
+                }
+
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+
+        }
+
+        private void TrackBarPWM11_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando = string.Format("set pwm11 {0}", TrackBarPWM11.Value); //set pwm11 0..225
+                    serialPortArduino.WriteLine(commando);
+                }
 
             }
             catch (Exception exception)
