@@ -337,55 +337,80 @@ namespace SerialCommunication
             try
                
             {
-                if (serialPortArduino.IsOpen)
+                if (!serialPortArduino.IsOpen)
                 {
-                    serialPortArduino.ReadExisting();
+                    return;
+                }
 
-                    // --- A0: gewenste temperatuur ---
-                    string comando = "get_a0";
-                    serialPortArduino.WriteLine(comando);
+                // Buffer leegmaken
+                serialPortArduino.DiscardInBuffer();
 
-                    string antwoord = serialPortArduino.ReadLine();
-                    antwoord = antwoord.TrimEnd();
-                    antwoord = antwoord.Substring(4); // "A0:"
+                // ===============================
+                // Gewenste temperatuur uitlezen A0
+                // ===============================
+                serialPortArduino.WriteLine("get a0");
 
-                    int rawA0 = Int32.Parse(antwoord);
+                string antwoord = serialPortArduino.ReadLine().Trim();
 
-                    // Herschalen: 0–1023 → 5–45 °C
-                    double slope0 = (45.0 - 5.0) / 1023.0;
-                    double gewensteTemp = slope0 * rawA0 + 5.0;
+                if (antwoord.StartsWith("a0:"))
+                {
+                    antwoord = antwoord.Substring(3).Trim();
+                }
 
-                    labelGewensteTemp.Text = gewensteTemp.ToString("F1") + " °C";
+                int rawA0;
+                if (!Int32.TryParse(antwoord, out rawA0))
+                {
+                    return;
+                }
 
+                // 0-1023 omzetten naar 5-45°C
+                double gewensteTemp = ((rawA0 / 1023.0) * 40.0) + 5.0;
 
-                    // --- A1: huidige temperatuur ---
-                    comando = "get_a1";
-                    serialPortArduino.WriteLine(comando);
+                // extra beveiliging
+                gewensteTemp = Math.Max(5.0, Math.Min(45.0, gewensteTemp));
 
-                    antwoord = serialPortArduino.ReadLine();
-                    antwoord = antwoord.TrimEnd();
-                    antwoord = antwoord.Substring(4); // "A1:"
-
-                    int rawA1 = Int32.Parse(antwoord);
-
-                    // Herschalen: 0–1023 → 0–500 °C
-                    double slope1 = 500.0 / 1023.0;
-                    double huidigeTemp = slope1 * rawA1;
-
-                    labelHuidigeTemp.Text = huidigeTemp.ToString("F1") + " °C";
+                labelGewensteTemp.Text = gewensteTemp.ToString("F1") + " °C";
 
 
-                    // --- LED aansturen ---
-                    if (huidigeTemp < gewensteTemp)
-                    {
-                        serialPortArduino.WriteLine("led_on");
-                    }
-                    else
-                    {
-                        serialPortArduino.WriteLine("led_off");
-                    }
+                // ===============================
+                // Huidige temperatuur uitlezen A1
+                // ===============================
+                serialPortArduino.WriteLine("get a1");
+
+                antwoord = serialPortArduino.ReadLine().Trim();
+
+                if (antwoord.StartsWith("a1:"))
+                {
+                    antwoord = antwoord.Substring(3).Trim();
+                }
+
+                int rawA1;
+                if (!Int32.TryParse(antwoord, out rawA1))
+                {
+                    labelHuidigeTemp.Text = "fout";
+                    return;
+                }
+
+                // LM335: 10mV/K
+                double voltage = rawA1 * (5.0 / 1023.0);
+                double huidigeTemp = (voltage * 100.0) - 273.15;
+
+                labelHuidigeTemp.Text = huidigeTemp.ToString("F1") + " °C";
+
+
+                // ===============================
+                // LED regeling op D2
+                // ===============================
+                if (huidigeTemp < gewensteTemp)
+                {
+                    serialPortArduino.WriteLine("set d2 high");
+                }
+                else
+                {
+                    serialPortArduino.WriteLine("set d2 low");
                 }
             }
+
             catch (Exception exception)
             {
                 labelStatus.Text = "error: " + exception.Message;
