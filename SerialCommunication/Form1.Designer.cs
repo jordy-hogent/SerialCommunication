@@ -90,6 +90,9 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.labelStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.serialPortArduino = new System.IO.Ports.SerialPort(this.components);
+            this.timerOefening3 = new System.Windows.Forms.Timer(this.components);
+            this.timerOefening4 = new System.Windows.Forms.Timer(this.components);
+            this.timerOefening5 = new System.Windows.Forms.Timer(this.components);
             this.tabControl.SuspendLayout();
             this.tabPageInstellingen.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -175,6 +178,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1176, 641);
             this.tabControl.TabIndex = 9;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPageInstellingen
             // 
@@ -613,13 +617,13 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "PWM 11";
             // 
-            // trackBarPWM11
+            // TrackBarPWM11
             // 
             this.TrackBarPWM11.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TrackBarPWM11.Location = new System.Drawing.Point(720, 511);
             this.TrackBarPWM11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TrackBarPWM11.Maximum = 255;
-            this.TrackBarPWM11.Name = "trackBarPWM11";
+            this.TrackBarPWM11.Name = "TrackBarPWM11";
             this.TrackBarPWM11.Size = new System.Drawing.Size(370, 69);
             this.TrackBarPWM11.TabIndex = 4;
             this.TrackBarPWM11.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -635,13 +639,13 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "PWM 10";
             // 
-            // trackBarPWM10
+            // TrackBarPWM10
             // 
             this.TrackBarPWM10.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TrackBarPWM10.Location = new System.Drawing.Point(720, 454);
             this.TrackBarPWM10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TrackBarPWM10.Maximum = 255;
-            this.TrackBarPWM10.Name = "trackBarPWM10";
+            this.TrackBarPWM10.Name = "TrackBarPWM10";
             this.TrackBarPWM10.Size = new System.Drawing.Size(370, 69);
             this.TrackBarPWM10.TabIndex = 2;
             this.TrackBarPWM10.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -657,13 +661,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "PWM 9";
             // 
-            // trackBarPWM9
+            // TrackBarPWM9
             // 
             this.TrackBarPWM9.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TrackBarPWM9.Location = new System.Drawing.Point(720, 395);
             this.TrackBarPWM9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TrackBarPWM9.Maximum = 255;
-            this.TrackBarPWM9.Name = "trackBarPWM9";
+            this.TrackBarPWM9.Name = "TrackBarPWM9";
             this.TrackBarPWM9.Size = new System.Drawing.Size(370, 69);
             this.TrackBarPWM9.TabIndex = 0;
             this.TrackBarPWM9.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -868,6 +872,19 @@
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(0, 15);
             // 
+            // timerOefening3
+            // 
+            this.timerOefening3.Interval = 1000;
+            this.timerOefening3.Tick += new System.EventHandler(this.timerOefening3_Tick);
+            // 
+            // timerOefening4
+            // 
+            this.timerOefening4.Tick += new System.EventHandler(this.timerOefening4_Tick);
+            // 
+            // timerOefening5
+            // 
+            this.timerOefening5.Tick += new System.EventHandler(this.timerOefening5_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -980,6 +997,9 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel labelStatus;
         private System.IO.Ports.SerialPort serialPortArduino;
+        private System.Windows.Forms.Timer timerOefening3;
+        private System.Windows.Forms.Timer timerOefening4;
+        private System.Windows.Forms.Timer timerOefening5;
     }
 }
 
